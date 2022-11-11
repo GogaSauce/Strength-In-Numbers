@@ -5714,7 +5714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a31167fb1cdcbaf43832a4d92f408003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 500
   health: {fileID: 0}
   rb: {fileID: 136919029170498425}
   moveSpeed: 1
@@ -5722,8 +5722,13 @@ MonoBehaviour:
   cam: {fileID: 0}
   swordDmg: 2
   isAttacking: 0
-  playerDmg: 25
+  playerDmg: 3
   anim: {fileID: 350221399125349596}
+  inStompRange: 0
+  stompRange: 0.82
+  enemy:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &990921141211495360
 BoxCollider:
   m_ObjectHideFlags: 0

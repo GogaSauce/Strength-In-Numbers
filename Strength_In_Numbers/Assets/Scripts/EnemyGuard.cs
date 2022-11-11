@@ -26,8 +26,13 @@ public class EnemyGuard : MonoBehaviour
         currentHP = maxHP;
         enemyHealth.SetMaxHealth(maxHP);
         enemyHealth.slider.value = maxHP;
-        player = GameObject.FindWithTag("Player").transform;
-        playerScript = player.GetComponent<Player>();
+        if (GameObject.FindWithTag("Player") != null)
+        {
+            player = GameObject.FindWithTag("Player").transform;
+            playerScript = player.GetComponent<Player>();
+        }
+        
+        
         
     }
     // Update is called once per frame
@@ -55,6 +60,12 @@ public class EnemyGuard : MonoBehaviour
             Invoke(nameof(Attack), attackTime);
             
         }
+        if (playerScript.isAttacking && inAttackRange)
+        {
+            
+            TakeDamage(playerScript.playerDmg);
+            
+        }
     }
     void Attack()
     {
@@ -76,15 +87,7 @@ public class EnemyGuard : MonoBehaviour
        
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player") && playerScript.isAttacking)
-        {
-            Debug.Log("should be taking damager");
-            TakeDamage(playerScript.playerDmg);
-            Debug.Log(currentHP);
-        }
-    }
+   
 
     void TakeDamage(float damage){
         currentHP -= damage;

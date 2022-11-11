@@ -17,6 +17,11 @@ public class Player : MonoBehaviour
     public bool isAttacking;
     public float playerDmg;
     public Animator anim;
+    public bool inStompRange;
+    public float stompRange;
+    public LayerMask enemy;
+    float castleRange;
+    Transform castle;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,13 +32,17 @@ public class Player : MonoBehaviour
         Cursor.visible = false;
         cam = GameObject.FindGameObjectWithTag("MainCamera").transform;
         rb = GetComponent<Rigidbody>();
+        castle = GameObject.FindWithTag("castle").transform;
         
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        castleRange = Vector3.Distance(transform.position, castle.position);
 
+       
+        inStompRange = Physics.CheckSphere(transform.position, stompRange, enemy);
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
@@ -54,13 +63,22 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             anim.Play("playerAttack");
+            
+        }
+        if (Input.GetKeyDown(KeyCode.E) && castleRange <= 4.9f)
+        {
             isAttacking = true;
         }
+        else if (Input.GetKeyDown(KeyCode.E) && inStompRange)
+        {
+            isAttacking = true;
+        }
+        
         else if (!Input.GetKey(KeyCode.E))
         {
             isAttacking = false;
         }
-        
+
     }
 
     private void OnCollisionEnter(Collision other)
@@ -78,5 +96,10 @@ public class Player : MonoBehaviour
         health.SetHealth(currentHealth);
     }
 
-    
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, stompRange);
+    }
+
 }

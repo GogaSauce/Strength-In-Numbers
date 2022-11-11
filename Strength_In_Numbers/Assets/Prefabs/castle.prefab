@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2510945821788230305}
   - component: {fileID: 4376108742355483364}
+  - component: {fileID: 1897704826460494241}
   m_Layer: 0
   m_Name: castle
   m_TagString: castle
@@ -26,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2995873723199784987}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.8678775, y: 0.07632637, z: -22.05}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4233816779364563503}
@@ -58,8 +59,23 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 31.037893, y: 25.003736, z: 29.46928}
-  m_Center: {x: -0.4364586, y: 12.001857, z: -0.10081291}
+  m_Size: {x: 32.042892, y: 25.003736, z: 31.81936}
+  m_Center: {x: 0.1538837, y: 12.001857, z: -0.11901736}
+--- !u!114 &1897704826460494241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2995873723199784987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 385327b6185167745a204fc4c56897b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthbar: {fileID: 0}
+  hp: 0
+  player: {fileID: 0}
 --- !u!1 &3377261129856124718
 GameObject:
   m_ObjectHideFlags: 0
