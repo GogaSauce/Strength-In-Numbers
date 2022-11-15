@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyGuard : MonoBehaviour
+public class ArcherScript : MonoBehaviour
 {
     Player playerScript;
     public Health enemyHealth;
-    public float currentHP;
+    public float hp;
     [SerializeField]
     float maxHP;
     public NavMeshAgent agent;
@@ -17,13 +17,16 @@ public class EnemyGuard : MonoBehaviour
     public LayerMask playerMask;
     public float attackTime;
     bool alreadyAttacked;
-    public Animator anim;
-    
+    [SerializeField] GameObject arrow;
+    [SerializeField] Transform shotPoint;
+    [SerializeField] float forwardForce;
+    //public Animator anim;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        currentHP = maxHP;
+        hp = maxHP;
         enemyHealth.SetMaxHealth(maxHP);
         enemyHealth.slider.value = maxHP;
         if (GameObject.FindWithTag("Player") != null)
@@ -31,47 +34,51 @@ public class EnemyGuard : MonoBehaviour
             player = GameObject.FindWithTag("Player").transform;
             playerScript = player.GetComponent<Player>();
         }
-        
-        
-        
+
+
+
     }
     // Update is called once per frame
     void Update()
     {
+        float dist = Vector3.Distance(transform.position, player.position);
+        
         if (player != null)
         {
             transform.LookAt(new Vector3(player.position.x, player.position.y - 1f, player.position.z));
+        }
+        if (hp <= 0f)
+        {
+            Destroy(gameObject);
+        }
 
-            if (currentHP <= 0f)
-            {
-                Destroy(gameObject);
-            }
+        inAttackRange = Physics.CheckSphere(transform.position, attackRange, playerMask);
+        if (!inAttackRange)
+        {
 
-            inAttackRange = Physics.CheckSphere(transform.position, attackRange, playerMask);
-            if (!inAttackRange)
-            {
+            Chase();
+        }
+        else if (inAttackRange && !alreadyAttacked)
+        {
+            alreadyAttacked = true;
+            agent.SetDestination(transform.position);
+            Invoke(nameof(Attack), attackTime);
 
-                Chase();
-            }
-            else if (inAttackRange && !alreadyAttacked)
-            {
-                alreadyAttacked = true;
+        }
+        if (playerScript.isAttacking &&  dist <= playerScript.stompRange + 0.4f)
+        {
 
-                Invoke(nameof(Attack), attackTime);
+            TakeDamage(playerScript.playerDmg);
 
-            }
-            if (playerScript.isAttacking && inAttackRange)
-            {
-
-                TakeDamage(playerScript.playerDmg);
-
-            }
         }
     }
     void Attack()
     {
         alreadyAttacked = false;
-        anim.Play("attack");
+        Rigidbody obj = Instantiate(arrow, shotPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
+        obj.transform.LookAt(player);
+        obj.AddForce(obj.transform.forward * forwardForce, ForceMode.Impulse);
+        //anim.Play("attack");
     }
     void Chase()
     {
@@ -79,20 +86,21 @@ public class EnemyGuard : MonoBehaviour
         {
             agent.SetDestination(player.position);
         }
-        
+
     }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
-       
+
     }
 
-   
 
-    void TakeDamage(float damage){
-        currentHP -= damage;
-        enemyHealth.SetHealth(currentHP);
+
+    void TakeDamage(float damage)
+    {
+        hp -= damage;
+        enemyHealth.SetHealth(hp);
 
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Player : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Player : MonoBehaviour
     public Transform cam;
     [SerializeField]
     float swordDmg;
+    [SerializeField] float arrowDmg;
     public bool isAttacking;
     public float playerDmg;
     public Animator anim;
@@ -22,6 +24,18 @@ public class Player : MonoBehaviour
     public LayerMask enemy;
     float castleRange;
     Transform castle;
+    public float throwForce;
+    bool isEquipped;
+    public Canvas aimPoint;
+    public CameraStyle style;
+    public Transform combatLookAt;
+    public CinemachineFreeLook basic;
+    public CinemachineFreeLook combat;
+    public enum CameraStyle
+    {
+        Basic,
+        Combat
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -52,13 +66,32 @@ public class Player : MonoBehaviour
         Vector3 dir = new Vector3(horizontal, 0f, vert).normalized;
         if (dir.magnitude >= 0.1f)
         {
-            float targetAngle = Mathf.Atan2(dir.x, dir.z)* Mathf.Rad2Deg + cam.eulerAngles.y;
+            if (style == CameraStyle.Basic)
+            {
 
-            float smoothedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref currentVelocity, smoothTime);
-            transform.rotation = Quaternion.Euler(0f, smoothedAngle, 0f);
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            
-            transform.position += moveDir * moveSpeed * Time.deltaTime;
+                basic.gameObject.SetActive(true);
+                combat.gameObject.SetActive(false);
+                float targetAngle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+
+                float smoothedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref currentVelocity, smoothTime);
+                transform.rotation = Quaternion.Euler(0f, smoothedAngle, 0f);
+                Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+
+                transform.position += moveDir * moveSpeed * Time.deltaTime;
+            }
+            else if (style == CameraStyle.Combat)
+            {
+                basic.gameObject.SetActive(false);
+                combat.gameObject.SetActive(true);
+                float targetAngle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+
+                float smoothedAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref currentVelocity, smoothTime);
+                transform.rotation = Quaternion.Euler(0f, smoothedAngle, 0f);
+                Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+
+                transform.position += moveDir * moveSpeed * Time.deltaTime;
+            }
+           
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -78,6 +111,29 @@ public class Player : MonoBehaviour
         {
             isAttacking = false;
         }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            anim.Play("pickUpRock");
+            
+        }
+        if (Input.GetMouseButton(1))
+        {
+            style = CameraStyle.Combat;
+            aimPoint.gameObject.SetActive(true);
+           
+            
+        }
+        else
+        {
+            style = CameraStyle.Basic;
+            aimPoint.gameObject.SetActive(false);
+            
+        }
+        if (Input.GetMouseButtonUp(0) && GetComponentInChildren<CreateRock>().equipped)
+        { 
+            anim.Play("throwRock");
+            
+        }
 
     }
 
@@ -86,6 +142,10 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("sword"))
         {
             TakeDamage(swordDmg);
+        }
+        if (other.gameObject.CompareTag("arrow"))
+        {
+            TakeDamage(arrowDmg);
         }
 
     }
