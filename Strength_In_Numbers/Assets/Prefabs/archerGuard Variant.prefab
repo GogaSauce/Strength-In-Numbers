@@ -983,7 +983,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4335ae13b481a8f488a5295f61b80234, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: archer
       objectReference: {fileID: 0}
     - target: {fileID: 970434839282756239, guid: 4335ae13b481a8f488a5295f61b80234, type: 3}
       propertyPath: m_Layer
@@ -1174,7 +1174,7 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 8
-  attackTime: 3
+  attackTime: 2
   arrow: {fileID: 4488065115696617877, guid: c31818e39aa1c7d4d9ee08eda7a072c9, type: 3}
   shotPoint: {fileID: 5329759573563884222}
   forwardForce: 10

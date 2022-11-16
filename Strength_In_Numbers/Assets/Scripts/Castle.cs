@@ -5,7 +5,7 @@ using UnityEngine;
 public class Castle : MonoBehaviour
 {
     public Health healthbar;
-    float currentHp;
+    public float currentHp;
     public float hp;
     public Player player;
     Transform playerTransform;
@@ -27,12 +27,12 @@ public class Castle : MonoBehaviour
 
         if (dist <= 4.9f && player.isAttacking) 
         {
-            TakeDamage(player.playerDmg);
+            TakeDmg(player.playerDmg);
         }
         
     }
 
-    void TakeDamage(float damage)
+    public void TakeDmg(float damage)
     {
         currentHp -= damage;
         healthbar.SetHealth(currentHp);

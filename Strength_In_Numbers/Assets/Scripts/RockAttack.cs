@@ -13,6 +13,8 @@ public class RockAttack : MonoBehaviour
     //Parent for rock
     Transform holdSpot;
     [SerializeField] LayerMask everything;
+    public Transform check;
+    public float rockDmg;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,32 +33,46 @@ public class RockAttack : MonoBehaviour
         Vector3 mouseWorldPoint = Vector3.zero;
         
         Vector2 screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
-        Ray ray = Camera.main.ScreenPointToRay(screenCenter);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, everything))
         {
-
+            
             mouseWorldPoint = hit.point;
 
         }
-        Vector3 aimDir = mouseWorldPoint - transform.position.normalized;
+        Vector3 aimDir = (mouseWorldPoint - transform.position).normalized;
+        transform.rotation = Quaternion.LookRotation(aimDir, Vector3.up);
         if (transform.parent != null)
         {
             transform.localPosition = Vector3.zero;
         } 
 
-        if ( Input.GetMouseButtonUp(0) && create.equipped)
+        if (Input.GetMouseButtonUp(0) && create.equipped)
         {
             transform.SetParent(null);
-            
-            transform.rotation = Quaternion.LookRotation(aimDir, Vector3.up);
-            rb.velocity = transform.forward * player.throwForce;
+
+            rb.AddForce(transform.forward * player.throwForce, ForceMode.Impulse);
             create.equipped = false;
+            Destroy(gameObject, 1f);
         }
+
+        
 
         
     }
 
- 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("sword") || collision.gameObject.CompareTag("archer"))
+        {
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.CompareTag("castle"))
+        {
+            collision.gameObject.GetComponent<Castle>().TakeDmg(rockDmg);
+        }
+    }
+
 
 }

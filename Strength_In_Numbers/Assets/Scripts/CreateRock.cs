@@ -25,7 +25,11 @@ public class CreateRock : MonoBehaviour
             equipped = true;
 
         }
-
+        if (objs.Count > 1)
+        {
+            int randindex = Random.Range(0, objs.Count);
+            objs.RemoveAt(randindex);
+        }
     }
 
     private void OnDrawGizmos()

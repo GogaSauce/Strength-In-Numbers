@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        style = CameraStyle.Basic;
         currentHealth = maxHealth;
         health.SetMaxHealth(maxHealth);
         health.slider.value = maxHealth;

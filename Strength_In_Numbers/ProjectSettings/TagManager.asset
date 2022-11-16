@@ -9,6 +9,7 @@ TagManager:
   - arrow
   - holdPoint
   - ground
+  - archer
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - castle
   - ground
   - rock
-  - 
+  - arrow
   - 
   - 
   - 

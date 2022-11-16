@@ -100,7 +100,7 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 8
-  attackTime: 3
+  attackTime: 2
   arrow: {fileID: 4488065115696617877, guid: c31818e39aa1c7d4d9ee08eda7a072c9, type: 3}
   shotPoint: {fileID: 8508827722687222858}
   forwardForce: 10
