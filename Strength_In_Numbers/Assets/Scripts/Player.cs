@@ -51,13 +51,16 @@ public class Player : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+    
     void FixedUpdate()
     {
         castleRange = Vector3.Distance(transform.position, castle.position);
 
        
         inStompRange = Physics.CheckSphere(transform.position, stompRange, enemy);
+
+       
+
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
@@ -67,6 +70,7 @@ public class Player : MonoBehaviour
         Vector3 dir = new Vector3(horizontal, 0f, vert).normalized;
         if (dir.magnitude >= 0.1f)
         {
+            anim.SetFloat("speed", Mathf.Abs(dir.magnitude));
             if (style == CameraStyle.Basic)
             {
 
@@ -92,12 +96,24 @@ public class Player : MonoBehaviour
 
                 transform.position += moveDir * moveSpeed * Time.deltaTime;
             }
-           
+
         }
+        else
+        {
+            anim.SetFloat("speed", 0f);
+        }
+        
+        
+        
+        
+
+    }
+
+    private void Update()
+    {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            anim.Play("playerAttack");
-            
+            anim.SetTrigger("attack");
         }
         if (Input.GetKeyDown(KeyCode.E) && castleRange <= 4.9f)
         {
@@ -107,37 +123,36 @@ public class Player : MonoBehaviour
         {
             isAttacking = true;
         }
-        
+
         else if (!Input.GetKey(KeyCode.E))
         {
             isAttacking = false;
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            anim.Play("pickUpRock");
-            
+            anim.SetTrigger("pickRock");
+
         }
+
         if (Input.GetMouseButton(1))
         {
             style = CameraStyle.Combat;
             aimPoint.gameObject.SetActive(true);
-           
-            
+
         }
         else
         {
             style = CameraStyle.Basic;
             aimPoint.gameObject.SetActive(false);
-            
+
         }
         if (Input.GetMouseButtonUp(0) && GetComponentInChildren<CreateRock>().equipped)
-        { 
-            anim.Play("throwRock");
-            
+        {
+            anim.SetTrigger("throwRock");
+            Debug.Log("setTriggerRock");
+
         }
-
     }
-
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("sword"))
@@ -148,6 +163,7 @@ public class Player : MonoBehaviour
         {
             TakeDamage(arrowDmg);
         }
+        
 
     }
 

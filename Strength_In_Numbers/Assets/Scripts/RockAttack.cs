@@ -50,11 +50,7 @@ public class RockAttack : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && create.equipped)
         {
-            transform.SetParent(null);
-
-            rb.AddForce(transform.forward * player.throwForce, ForceMode.Impulse);
-            create.equipped = false;
-            Destroy(gameObject, 1f);
+            Invoke(nameof(Attack), 0.3f);
         }
 
         
@@ -74,5 +70,13 @@ public class RockAttack : MonoBehaviour
         }
     }
 
-
+    void Attack()
+    {
+        
+        transform.SetParent(null);
+        rb.AddForce(transform.forward * player.throwForce, ForceMode.Impulse);
+        create.equipped = false;
+        Destroy(gameObject, 1f);
+    }
+       
 }

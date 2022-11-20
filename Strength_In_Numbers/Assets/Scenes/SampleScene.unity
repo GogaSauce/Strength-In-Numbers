@@ -2340,7 +2340,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152793138}
-  m_LocalRotation: {x: 0.08618139, y: -0.000000019165745, z: 0.0000000016578989, w: 0.9962795}
+  m_LocalRotation: {x: 0.08618139, y: 0.000000019165745, z: -0.0000000016578989, w: 0.9962795}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3274,7 +3274,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724977979}
-  m_LocalRotation: {x: 0.044509154, y: 0.124253094, z: -0.005579296, w: 0.9912361}
+  m_LocalRotation: {x: 0.04456235, y: 0.114406765, z: -0.00513717, w: 0.99242073}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3804,19 +3804,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3592859516515745299, guid: 08f4e19bd145a3b45b600addde996561, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9912361
+      value: 0.99242073
       objectReference: {fileID: 0}
     - target: {fileID: 3592859516515745299, guid: 08f4e19bd145a3b45b600addde996561, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.044509154
+      value: 0.044562347
       objectReference: {fileID: 0}
     - target: {fileID: 3592859516515745299, guid: 08f4e19bd145a3b45b600addde996561, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.12425308
+      value: 0.11440676
       objectReference: {fileID: 0}
     - target: {fileID: 3592859516515745299, guid: 08f4e19bd145a3b45b600addde996561, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.005579296
+      value: -0.005137171
       objectReference: {fileID: 0}
     - target: {fileID: 3592859516515745299, guid: 08f4e19bd145a3b45b600addde996561, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3958,7 +3958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1899836669978944028, guid: 3f9c1d5f7a0aada46bcf198e6d5cca12, type: 3}
       propertyPath: maxHealth
-      value: 1500
+      value: 1250
       objectReference: {fileID: 0}
     - target: {fileID: 1899836669978944028, guid: 3f9c1d5f7a0aada46bcf198e6d5cca12, type: 3}
       propertyPath: playerDmg
@@ -4184,7 +4184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1897704826460494241, guid: 665b905c8f166fc4a9bd8964bc601ca0, type: 3}
       propertyPath: hp
-      value: 2000
+      value: 2500
       objectReference: {fileID: 0}
     - target: {fileID: 1897704826460494241, guid: 665b905c8f166fc4a9bd8964bc601ca0, type: 3}
       propertyPath: range
