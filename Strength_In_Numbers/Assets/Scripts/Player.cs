@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     public Transform combatLookAt;
     public CinemachineFreeLook basic;
     public CinemachineFreeLook combat;
+    
     public enum CameraStyle
     {
         Basic,
@@ -48,6 +49,7 @@ public class Player : MonoBehaviour
         cam = GameObject.FindGameObjectWithTag("MainCamera").transform;
         rb = GetComponent<Rigidbody>();
         castle = GameObject.FindWithTag("castle").transform;
+
         
     }
 

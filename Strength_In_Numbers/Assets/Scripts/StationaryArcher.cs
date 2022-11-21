@@ -18,7 +18,7 @@ public class StationaryArcher : MonoBehaviour
     [SerializeField] GameObject arrow;
     [SerializeField] Transform shotPoint;
     [SerializeField] float forwardForce;
-    //public Animator anim;
+    Animator anim;
 
 
     // Start is called before the first frame update
@@ -32,7 +32,7 @@ public class StationaryArcher : MonoBehaviour
             playerTrans= GameObject.FindWithTag("Player").transform;
             playerScript = playerTrans.GetComponent<Player>();
         }
-
+        anim = GetComponent<Animator>();
 
 
     }
@@ -55,7 +55,7 @@ public class StationaryArcher : MonoBehaviour
         if (inAttackRange && !alreadyAttacked)
         {
             alreadyAttacked = true;
-           
+            anim.SetTrigger("isattack");
             Invoke(nameof(Attack), attackTime);
 
         }

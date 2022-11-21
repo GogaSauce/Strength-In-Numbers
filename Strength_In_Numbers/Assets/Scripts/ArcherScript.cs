@@ -20,6 +20,7 @@ public class ArcherScript : MonoBehaviour
     [SerializeField] GameObject arrow;
     [SerializeField] Transform shotPoint;
     [SerializeField] float forwardForce;
+    Animator anim;
     //public Animator anim;
 
 
@@ -35,7 +36,7 @@ public class ArcherScript : MonoBehaviour
             playerScript = player.GetComponent<Player>();
         }
 
-
+        anim = GetComponent<Animator>();
 
     }
     // Update is called once per frame
@@ -60,6 +61,8 @@ public class ArcherScript : MonoBehaviour
         }
         else if (inAttackRange && !alreadyAttacked)
         {
+
+            anim.SetTrigger("isattack");
             alreadyAttacked = true;
             agent.SetDestination(transform.position);
             Invoke(nameof(Attack), attackTime);
