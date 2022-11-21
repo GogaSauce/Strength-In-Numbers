@@ -21,6 +21,7 @@ public class ArcherScript : MonoBehaviour
     [SerializeField] Transform shotPoint;
     [SerializeField] float forwardForce;
     Animator anim;
+    
     //public Animator anim;
 
 
@@ -58,6 +59,7 @@ public class ArcherScript : MonoBehaviour
         {
 
             Chase();
+            
         }
         else if (inAttackRange && !alreadyAttacked)
         {

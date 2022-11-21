@@ -25,12 +25,13 @@ public class Player : MonoBehaviour
     float castleRange;
     Transform castle;
     public float throwForce;
-    bool isEquipped;
+    CreateRock rock;
     public Canvas aimPoint;
     public CameraStyle style;
     public Transform combatLookAt;
     public CinemachineFreeLook basic;
     public CinemachineFreeLook combat;
+    [SerializeField] AudioSource hitSound;
     
     public enum CameraStyle
     {
@@ -49,7 +50,7 @@ public class Player : MonoBehaviour
         cam = GameObject.FindGameObjectWithTag("MainCamera").transform;
         rb = GetComponent<Rigidbody>();
         castle = GameObject.FindWithTag("castle").transform;
-
+        rock = GetComponentInChildren<CreateRock>();
         
     }
 
@@ -136,7 +137,7 @@ public class Player : MonoBehaviour
 
         }
 
-        if (Input.GetMouseButton(1))
+        if (rock.equipped)
         {
             style = CameraStyle.Combat;
             aimPoint.gameObject.SetActive(true);
@@ -160,10 +161,12 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("sword"))
         {
             TakeDamage(swordDmg);
+            hitSound.Play();
         }
         if (other.gameObject.CompareTag("arrow"))
         {
             TakeDamage(arrowDmg);
+            hitSound.Play();
         }
         
 

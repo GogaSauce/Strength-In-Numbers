@@ -15,6 +15,7 @@ public class RockAttack : MonoBehaviour
     [SerializeField] LayerMask everything;
     public Transform check;
     public float rockDmg;
+    public AudioSource audioSrc;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class RockAttack : MonoBehaviour
         transform.SetParent(holdSpot);
         player = holdSpot.GetComponentInParent<Player>();
         create = holdSpot.GetComponent<CreateRock>();
+        
     }
 
     // Update is called once per frame
@@ -60,14 +62,19 @@ public class RockAttack : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        
         if (collision.gameObject.CompareTag("sword") || collision.gameObject.CompareTag("archer"))
         {
             Destroy(collision.gameObject);
+            audioSrc.Play();
         }
         if (collision.gameObject.CompareTag("castle"))
         {
             collision.gameObject.GetComponent<Castle>().TakeDmg(rockDmg);
-        }
+            audioSrc.Play();
+        }    
+       
+       
     }
 
     void Attack()

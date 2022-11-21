@@ -19,6 +19,7 @@ public class EnemyGuard : MonoBehaviour
     bool alreadyAttacked;
     public Animator anim;
     
+    
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +53,7 @@ public class EnemyGuard : MonoBehaviour
             {
 
                 Chase();
+                
             }
             else if (inAttackRange && !alreadyAttacked)
             {
