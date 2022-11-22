@@ -72,8 +72,13 @@ public class RockAttack : MonoBehaviour
         {
             collision.gameObject.GetComponent<Castle>().TakeDmg(rockDmg);
             audioSrc.Play();
-        }    
-       
+        }
+        if (collision.gameObject.CompareTag("tree"))
+        {
+            audioSrc.Play();
+            Destroy(collision.gameObject);
+
+        }
        
     }
 
