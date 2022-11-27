@@ -41,6 +41,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hitSound.volume = SetSound.sfxVolume;
+        Debug.Log(hitSound.volume);
         style = CameraStyle.Basic;
         currentHealth = maxHealth;
         health.SetMaxHealth(maxHealth);
@@ -104,12 +106,9 @@ public class Player : MonoBehaviour
         else
         {
             anim.SetFloat("speed", 0f);
+            
         }
-        
-        
-        
-        
-
+       
     }
 
     private void Update()
@@ -118,9 +117,10 @@ public class Player : MonoBehaviour
         {
             anim.SetTrigger("attack");
         }
-        if (Input.GetKeyDown(KeyCode.E) && castleRange <= 4.9f)
+        if (Input.GetKeyUp(KeyCode.E) && castleRange <= 4.9f)
         {
             isAttacking = true;
+            castle.GetComponent<Castle>().TakeDmg(playerDmg);
         }
         else if (Input.GetKeyDown(KeyCode.E) && inStompRange)
         {
@@ -137,6 +137,7 @@ public class Player : MonoBehaviour
 
         }
 
+        
         if (rock.equipped)
         {
             style = CameraStyle.Combat;
@@ -155,6 +156,9 @@ public class Player : MonoBehaviour
             Debug.Log("setTriggerRock");
 
         }
+
+        
+        
     }
     private void OnCollisionEnter(Collision other)
     {

@@ -119,8 +119,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f212ffccfb58be94abf4fdcf64869995, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
-  m_Pitch: 1
+  m_Volume: 1
+  m_Pitch: 0.66
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -221,3 +221,4 @@ MonoBehaviour:
   check: {fileID: 6346694004858469802, guid: 852263e9b2b55304ba1b5a9c225eefd5, type: 3}
   rockDmg: 25
   audioSrc: {fileID: -6316178054134623139}
+  rockEffect: {fileID: 8132894575949876507, guid: 2c698ca3d24a2b64387f25f631f05073, type: 3}

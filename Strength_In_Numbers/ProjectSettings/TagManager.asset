@@ -11,6 +11,7 @@ TagManager:
   - ground
   - archer
   - tree
+  - hitPoint
   layers:
   - Default
   - TransparentFX

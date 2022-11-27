@@ -12,6 +12,10 @@ public class arrowScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (collision.gameObject.CompareTag("tree"))
+        {
+            Destroy(gameObject);
+        }
         else
         {
             Destroy(gameObject, 2.5f);

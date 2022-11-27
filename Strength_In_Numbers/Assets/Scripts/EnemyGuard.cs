@@ -90,8 +90,6 @@ public class EnemyGuard : MonoBehaviour
        
     }
 
-   
-
     void TakeDamage(float damage){
         currentHP -= damage;
         enemyHealth.SetHealth(currentHP);

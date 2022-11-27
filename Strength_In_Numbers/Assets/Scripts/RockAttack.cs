@@ -5,7 +5,6 @@ using UnityEngine;
 public class RockAttack : MonoBehaviour
 {
 
-    
     Rigidbody rb;
     GameObject cam;
     Player player;
@@ -16,6 +15,7 @@ public class RockAttack : MonoBehaviour
     public Transform check;
     public float rockDmg;
     public AudioSource audioSrc;
+    [SerializeField] GameObject rockEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +25,7 @@ public class RockAttack : MonoBehaviour
         transform.SetParent(holdSpot);
         player = holdSpot.GetComponentInParent<Player>();
         create = holdSpot.GetComponent<CreateRock>();
-        
+        audioSrc.volume = SetSound.sfxVolume;
     }
 
     // Update is called once per frame
@@ -48,38 +48,39 @@ public class RockAttack : MonoBehaviour
         if (transform.parent != null)
         {
             transform.localPosition = Vector3.zero;
-        } 
+        }
 
         if (Input.GetMouseButtonUp(0) && create.equipped)
         {
             Invoke(nameof(Attack), 0.3f);
-        }
 
-        
-
-        
+        }   
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        
+
+        Debug.Log(audioSrc.enabled);
+        audioSrc.Play();
         if (collision.gameObject.CompareTag("sword") || collision.gameObject.CompareTag("archer"))
         {
             Destroy(collision.gameObject);
-            audioSrc.Play();
+           
         }
         if (collision.gameObject.CompareTag("castle"))
         {
             collision.gameObject.GetComponent<Castle>().TakeDmg(rockDmg);
-            audioSrc.Play();
+            
+            Destroy(gameObject, 0.1f);
         }
+            
         if (collision.gameObject.CompareTag("tree"))
         {
-            audioSrc.Play();
             Destroy(collision.gameObject);
-
+           
         }
-       
+        
+        Instantiate(rockEffect, transform.position, Quaternion.identity);
     }
 
     void Attack()

@@ -21,9 +21,14 @@ public class CreateRock : MonoBehaviour
         {
             Debug.Log("instantiate");
             obj = Instantiate(rock, transform.position, Quaternion.identity);
-            objs.Add(obj);
+            objs.Add(obj);           
             equipped = true;
+            
 
+        }
+        if (obj == null && equipped)
+        {
+            equipped = false;
         }
         if (objs.Count > 1)
         {
