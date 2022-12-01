@@ -222,3 +222,4 @@ MonoBehaviour:
   rockDmg: 25
   audioSrc: {fileID: -6316178054134623139}
   rockEffect: {fileID: 8132894575949876507, guid: 2c698ca3d24a2b64387f25f631f05073, type: 3}
+  guardDeath: {fileID: 317795166899656734, guid: 40d689988fc0cd744b8301558ee27739, type: 3}

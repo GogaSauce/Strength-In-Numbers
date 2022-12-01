@@ -21,6 +21,8 @@ public class ArcherScript : MonoBehaviour
     [SerializeField] Transform shotPoint;
     [SerializeField] float forwardForce;
     Animator anim;
+    float dist;
+    [SerializeField] ParticleSystem pop;
     
     //public Animator anim;
 
@@ -43,7 +45,11 @@ public class ArcherScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float dist = Vector3.Distance(transform.position, player.position);
+        if (player != null)
+        {
+            dist = Vector3.Distance(transform.position, player.position);
+        }
+       
         
         if (player != null)
         {
@@ -51,6 +57,7 @@ public class ArcherScript : MonoBehaviour
         }
         if (hp <= 0f)
         {
+            Instantiate(pop, transform.position + new Vector3(0f, 0.5f, 0f), Quaternion.identity);
             Destroy(gameObject);
         }
 

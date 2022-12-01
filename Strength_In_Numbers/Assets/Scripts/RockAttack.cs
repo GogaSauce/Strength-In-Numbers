@@ -16,6 +16,7 @@ public class RockAttack : MonoBehaviour
     public float rockDmg;
     public AudioSource audioSrc;
     [SerializeField] GameObject rockEffect;
+    [SerializeField] GameObject guardDeath;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +65,7 @@ public class RockAttack : MonoBehaviour
         audioSrc.Play();
         if (collision.gameObject.CompareTag("sword") || collision.gameObject.CompareTag("archer"))
         {
+            Instantiate(guardDeath, transform.position, Quaternion.identity);
             Destroy(collision.gameObject);
            
         }

@@ -1165,6 +1165,7 @@ MonoBehaviour:
     m_Bits: 8
   attackTime: 1
   anim: {fileID: 3790742818693506755}
+  pop: {fileID: 2713458632675539900, guid: 40d689988fc0cd744b8301558ee27739, type: 3}
 --- !u!1 &4733194971365787652
 GameObject:
   m_ObjectHideFlags: 0

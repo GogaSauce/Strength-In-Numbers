@@ -1250,6 +1250,7 @@ MonoBehaviour:
   arrow: {fileID: 4488065115696617877, guid: c31818e39aa1c7d4d9ee08eda7a072c9, type: 3}
   shotPoint: {fileID: 5329759573563884222}
   forwardForce: 10
+  pop: {fileID: 2713458632675539900, guid: 40d689988fc0cd744b8301558ee27739, type: 3}
 --- !u!195 &7771829257500941093
 NavMeshAgent:
   m_ObjectHideFlags: 0

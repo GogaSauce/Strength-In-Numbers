@@ -18,7 +18,7 @@ public class EnemyGuard : MonoBehaviour
     public float attackTime;
     bool alreadyAttacked;
     public Animator anim;
-    
+    [SerializeField] ParticleSystem pop;
     
 
     // Start is called before the first frame update
@@ -45,6 +45,7 @@ public class EnemyGuard : MonoBehaviour
 
             if (currentHP <= 0f)
             {
+                Instantiate(pop, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
 

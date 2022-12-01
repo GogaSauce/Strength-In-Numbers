@@ -59,7 +59,11 @@ public class Player : MonoBehaviour
     
     void FixedUpdate()
     {
-        castleRange = Vector3.Distance(transform.position, castle.position);
+        if (castle != null)
+        {
+            castleRange = Vector3.Distance(transform.position, castle.position);
+        }
+        
 
        
         inStompRange = Physics.CheckSphere(transform.position, stompRange, enemy);
@@ -117,7 +121,7 @@ public class Player : MonoBehaviour
         {
             anim.SetTrigger("attack");
         }
-        if (Input.GetKeyUp(KeyCode.E) && castleRange <= 4.9f)
+        if (Input.GetKeyUp(KeyCode.E) && castle != null && castleRange <= 3.5f)
         {
             isAttacking = true;
             castle.GetComponent<Castle>().TakeDmg(playerDmg);

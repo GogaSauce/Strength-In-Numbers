@@ -19,7 +19,8 @@ public class StationaryArcher : MonoBehaviour
     [SerializeField] Transform shotPoint;
     [SerializeField] float forwardForce;
     Animator anim;
-
+    float dist;
+    [SerializeField] ParticleSystem pop;
 
     // Start is called before the first frame update
     void Start()
@@ -39,14 +40,17 @@ public class StationaryArcher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float dist = Vector3.Distance(transform.position, playerTrans.position);
 
+
+       
         if (playerTrans!= null)
         {
+            dist = Vector3.Distance(transform.position, playerTrans.position);
             transform.LookAt(playerTrans);
         }
         if (currenthp <= 0f)
         {
+            Instantiate(pop, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 

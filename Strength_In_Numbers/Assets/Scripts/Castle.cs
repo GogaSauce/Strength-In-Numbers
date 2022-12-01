@@ -21,18 +21,15 @@ public class Castle : MonoBehaviour
         
     }
 
-    //void Update()
-    //{
-    //    float dist = Vector3.Distance(transform.position, playerTransform.position);
+    void Update()
+    {
 
-    //    if (dist <= 4.9f && player.isAttacking)
-    //    {
-    //        TakeDmg(player.playerDmg);
-    //    }
+        if (currentHp <= 0f)
+        {
+            Destroy(gameObject);
+        }
 
-
-
-    //}
+    }
 
 
     public void TakeDmg(float damage)
