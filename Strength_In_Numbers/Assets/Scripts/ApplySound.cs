@@ -10,6 +10,6 @@ public class ApplySound : MonoBehaviour
     void Start()
     {
         music.volume = SetSound.volume;
-        
+        Debug.Log(SetSound.volume);
     }
 }

@@ -1242,7 +1242,7 @@ MonoBehaviour:
   maxHP: 70
   agent: {fileID: 7771829257500941093}
   player: {fileID: 0}
-  attackRange: 7
+  attackRange: 10
   playerMask:
     serializedVersion: 2
     m_Bits: 8

@@ -7,8 +7,8 @@ public class SetSound : MonoBehaviour
 {
     
     public Slider bgm, sfx;
-    public static float volume;
-    public static float sfxVolume;
+    public static float volume = 1f;
+    public static float sfxVolume = 1f;
     public AudioSource backgroundAudio, rockhit, dmgSrc;
     
    public void Setsound()

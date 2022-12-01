@@ -25,12 +25,14 @@ public class Endgame : MonoBehaviour
             Time.timeScale = 0f;
             loseScreen.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
         if (!castle)
         {
             Time.timeScale = 0f;
             winScreen.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 }
